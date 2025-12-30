@@ -1,4 +1,4 @@
-"""Sana Editing pipeline."""
+"""VIBE Sana Editing pipeline."""
 
 from typing import Any
 
@@ -29,7 +29,7 @@ else:
     XLA_AVAILABLE = False
 
 
-class SanaEditingPipeline(SanaPipeline):
+class VIBESanaEditingPipeline(SanaPipeline):
     """Image Editing Pipeline for Sana."""
 
     edit_query_template = "what will this image be like if {instruction}"

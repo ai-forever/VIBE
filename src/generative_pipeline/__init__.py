@@ -1,5 +1,5 @@
 """Generative pipelines."""
 
-from .sana_editing_pipeline import SanaEditingPipeline
+from .vibe_sana_pipeline import VIBESanaEditingPipeline
 
-__all__ = ["SanaEditingPipeline"]
+__all__ = ["VIBESanaEditingPipeline"]

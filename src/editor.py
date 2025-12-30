@@ -7,7 +7,7 @@ import torch
 from loguru import logger
 from PIL import Image
 
-from src.generative_pipeline import SanaEditingPipeline
+from src.generative_pipeline import VIBESanaEditingPipeline
 from src.utils import retry_decorator
 from src.utils.img_utils import get_multiscale_transform, postprocess_padded_image, revert_resize
 
@@ -63,7 +63,7 @@ class ImageEditor:
         Args:
             checkpoint_path (str): The path to the pipeline checkpoint.
         """
-        self.pipe = SanaEditingPipeline.from_pretrained(checkpoint_path, torch_dtype=self.weight_dtype).to(self.device)
+        self.pipe = VIBESanaEditingPipeline.from_pretrained(checkpoint_path, torch_dtype=self.weight_dtype).to(self.device)
 
     def prepare_image_for_diffusion(self, image: Image.Image) -> tuple[Image.Image, tuple[int, ...] | None]:
         """Prepare the image for diffusion.

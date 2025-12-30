@@ -10,6 +10,8 @@ __pycache__/
 todo
 
 # Distribution / packaging
+.idea
+.idea/
 .Python
 .DS_Store
 build/

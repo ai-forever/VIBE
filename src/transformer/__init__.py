@@ -1,5 +1,5 @@
 """Sana Editing model."""
 
-from .sana_editing import VIBESanaEditingModel
+from .vibe_sana_editing import VIBESanaEditingModel
 
 __all__ = ["VIBESanaEditingModel"]
