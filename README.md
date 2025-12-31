@@ -41,6 +41,12 @@ It leverages the efficient [Sana1.5-1.6B](github.com/NVlabs/Sana) diffusion mode
     pip install -r requirements/requirements.txt
     ```
 
+4. **Install Package**:
+
+    ```bash
+    pip install .
+    ```
+   
 ### Docker Setup
 
 Alternatively, you can use Docker to run the project without installing dependencies locally.
@@ -150,3 +156,13 @@ This project builds upon the work of:
 
 - [Qwen3-VL](github.com/QwenLM/Qwen3-VL)
 - [Sana: Efficient High-Resolution Image Synthesis with Linear Diffusion Transformer](github.com/NVlabs/Sana)
+
+## Citation
+
+```bibtex
+@misc{vibe2025,
+  author = {Grigorii Alekseenko, Aleksandr Gordeev, Irina Tostykh, Bulat Suleimanov, Vladimir Dokholyan, Georgii Fedorov, Sergey Yakubson, Aleksandra Tsybina, Mikhail Chernyshov, Maksim Kuprashevich},
+  title = {VIBE: Visual Instruction Based Editor},
+  year = {2025},
+}
+```

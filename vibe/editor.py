@@ -100,10 +100,13 @@ class ImageEditor:
         conditioning_image: Image.Image | None = None,
         randomize_seed: bool = False,
         do_revert_resize: bool = True,
-        seed: int = 0,
+        seed: int = 42,
         num_images_per_prompt: int = 1,
         t2i_height: int | None = None,
         t2i_width: int | None = None,
+        num_inference_steps: int | None = None,
+        guidance_scale: float | None = None,
+        image_guidance_scale: float | None = None,
     ) -> list[Image.Image]:
         """Generate an image based on the provided image and text prompt.
 
@@ -116,6 +119,9 @@ class ImageEditor:
             num_images_per_prompt (int): number of images to generate for each prompt
             t2i_height (int | None): The height of the t2i image.
             t2i_width (int | None): The width of the t2i image.
+            image_guidance_scale (float | None): The image guidance scale.
+            guidance_scale (float | None): The guidance scale.
+            num_inference_steps (int | None): The number of inference steps.
 
         Returns:
             list[Image.Image]: The edited images.
@@ -145,10 +151,10 @@ class ImageEditor:
             prompt=instruction,
             height=inp_height,
             width=inp_width,
-            num_inference_steps=self.num_inference_steps,
+            num_inference_steps=self.num_inference_steps if num_inference_steps is None else num_inference_steps,
             num_images_per_prompt=num_images_per_prompt,
-            guidance_scale=self.guidance_scale,
-            image_guidance_scale=self.image_guidance_scale,
+            guidance_scale=self.guidance_scale if guidance_scale is None else guidance_scale,
+            image_guidance_scale=self.image_guidance_scale if image_guidance_scale is None else image_guidance_scale,
             output_type="pil",
             generator=torch.Generator(device=self.device).manual_seed(seed),
         ).images
