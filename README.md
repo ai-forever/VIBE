@@ -1,5 +1,7 @@
 # VIBE - Visual Instruction Based Editor
 
+[[`Demo`](https://huggingface.co/spaces/iitolstykh/VIBE-Image-Edit-DEMO)] [[`🤗 HuggingFace Model`](https://huggingface.co/iitolstykh/VIBE-Image-Edit)]
+
 VIBE is a powerful open-source framework for text-guided image editing.
 It leverages the efficient [Sana1.5-1.6B](github.com/NVlabs/Sana) diffusion model and [Qwen3-VL-2B-Instruct](github.com/QwenLM/Qwen3-VL) to provide **exceptionally fast** and high-quality, instruction-based image manipulation.
 
