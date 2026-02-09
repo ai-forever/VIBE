@@ -149,7 +149,7 @@ We provide a **CFG Distilled** version of the model: [`iitolstykh/VIBE-Image-Edi
 
 This version eliminates the need for classifier-free guidance (CFG), resulting in significantly faster generation times (~2x speedup) while maintaining high-quality results. 
 
-**Note:** When using this model, you do not need to provide `--image-guidance-scale` or `--guidance-scale`.
+**Note:** When using this model, please set `--image-guidance-scale` and `--guidance-scale` to 0.0 to disable CFG.
 
 ```bash
 PYTHONPATH="${PYTHONPATH:-}:$(pwd)" \
@@ -158,6 +158,8 @@ python scripts/inference.py edit-single-image \
     --instruction "Make the dog look like a painting" \
     --checkpoint-path "iitolstykh/VIBE-Image-Edit-DistilledCFG" \
     --output-path "outputs_distilled/" \
+    --image-guidance-scale 0.0 \
+    --guidance-scale 0.0 \
     --num-inference-steps 20 \
     --device "cuda:0"
 ```

@@ -60,7 +60,7 @@ class ImageEditor:
         if self.cfg_distilled:
             self.image_guidance_scale = 0.0
             self.guidance_scale = 0.0
-            logger.info(f"CFG-distilled model was loaded. By default CFG will not be used.")
+            logger.info(f"CFG-distilled model loaded. CFG is disabled by default.")
 
     @retry_decorator(logger=logger, delay=1)
     def get_generation_pipe(self, checkpoint_path: str, **kwargs) -> None:
