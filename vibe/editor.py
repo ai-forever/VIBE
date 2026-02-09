@@ -50,12 +50,17 @@ class ImageEditor:
             num_inference_steps (int): The number of inference steps.
             device (str): The device to use.
         """
+        self.cfg_distilled = False
         self.weight_dtype = torch.bfloat16
         self.device = device
         self.num_inference_steps = num_inference_steps
         self.image_guidance_scale = image_guidance_scale
         self.guidance_scale = guidance_scale
         self.get_generation_pipe(checkpoint_path, **kwargs)
+        if self.cfg_distilled:
+            self.image_guidance_scale = 0.0
+            self.guidance_scale = 0.0
+            logger.info(f"CFG-distilled model was loaded. By default CFG will not be used.")
 
     @retry_decorator(logger=logger, delay=1)
     def get_generation_pipe(self, checkpoint_path: str, **kwargs) -> None:
@@ -67,6 +72,7 @@ class ImageEditor:
         self.pipe = VIBESanaEditingPipeline.from_pretrained(
             checkpoint_path, torch_dtype=self.weight_dtype, **kwargs
         ).to(self.device)
+        self.cfg_distilled = getattr(self.pipe.transformer.config, "cfg_distilled", False)
 
     def prepare_image_for_diffusion(self, image: Image.Image) -> tuple[Image.Image, tuple[int, ...] | None]:
         """Prepare the image for diffusion.

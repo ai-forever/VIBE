@@ -1,6 +1,6 @@
 # VIBE - Visual Instruction Based Editor
 
-[[`Paper`](https://arxiv.org/abs/2601.02242)] [[`Demo`](https://huggingface.co/spaces/iitolstykh/VIBE-Image-Edit-DEMO)] [[`🤗 HuggingFace Model`](https://huggingface.co/iitolstykh/VIBE-Image-Edit)]
+[[`Paper`](https://arxiv.org/abs/2601.02242)] [[`Demo`](https://huggingface.co/spaces/iitolstykh/VIBE-Image-Edit-DEMO)] [[`🤗 HuggingFace Model`](https://huggingface.co/iitolstykh/VIBE-Image-Edit)] [[`🤗 CFG Distill Model`](https://huggingface.co/iitolstykh/VIBE-Image-Edit-DistilledCFG)]
 
 VIBE is a powerful open-source framework for text-guided image editing.
 It leverages the efficient [Sana1.5-1.6B](github.com/NVlabs/Sana) diffusion model and [Qwen3-VL-2B-Instruct](github.com/QwenLM/Qwen3-VL) to provide **exceptionally fast** and high-quality, instruction-based image manipulation.
@@ -142,6 +142,34 @@ python scripts/inference.py edit-multiple-images \
 - `--guidance-scale`: Controls the strength of the text prompt guidance (default: 4.5).
 - `--num-inference-steps`: Number of denoising steps (default: 20).
 - `--device`: The device to use.
+
+### CFG Distilled Model Usage
+
+We provide a **CFG Distilled** version of the model: [`iitolstykh/VIBE-Image-Edit-DistilledCFG`](https://huggingface.co/iitolstykh/VIBE-Image-Edit-DistilledCFG).
+
+This version eliminates the need for classifier-free guidance (CFG), resulting in significantly faster generation times (~2x speedup) while maintaining high-quality results. 
+
+**Note:** When using this model, you do not need to provide `--image-guidance-scale` or `--guidance-scale`.
+
+```bash
+PYTHONPATH="${PYTHONPATH:-}:$(pwd)" \
+python scripts/inference.py edit-single-image \
+    --image-path "examples/dog.jpg" \
+    --instruction "Make the dog look like a painting" \
+    --checkpoint-path "iitolstykh/VIBE-Image-Edit-DistilledCFG" \
+    --output-path "outputs_distilled/" \
+    --num-inference-steps 20 \
+    --device "cuda:0"
+```
+
+#### Inference Speed Comparison
+
+Below is a comparison of the total inference time between the original model (using CFG) and the distilled model (without CFG).
+
+| Resolution | Original Model (with CFG) | Distilled Model (No CFG) |
+| :--- | :--- | :--- |
+| **1024x1024** | 1.1453s | **0.6389s** |
+| **2048x2048** | 4.0837s | **1.9687s** |
 
 ## Project Structure
 
