@@ -156,7 +156,7 @@ PYTHONPATH="${PYTHONPATH:-}:$(pwd)" \
 python scripts/inference.py edit-single-image \
     --image-path "examples/dog.jpg" \
     --instruction "Make the dog look like a painting" \
-    --checkpoint-path "iitolstykh/VIBE-Image-Edit-DistilledCFG" \
+    --checkpoint-path "/path/to/VIBE-Image-Edit-DistilledCFG" \
     --output-path "outputs_distilled/" \
     --image-guidance-scale 0.0 \
     --guidance-scale 0.0 \
