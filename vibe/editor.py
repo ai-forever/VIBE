@@ -51,8 +51,9 @@ class ImageEditor:
             device (str): The device to use.
         """
         self.cfg_distilled = False
-        self.weight_dtype = torch.bfloat16
         self.device = device
+        # bfloat16 is not reliably supported on Apple Silicon (MPS); fall back to float32 there.
+        self.weight_dtype = torch.float32 if torch.device(device).type == "mps" else torch.bfloat16
         self.num_inference_steps = num_inference_steps
         self.image_guidance_scale = image_guidance_scale
         self.guidance_scale = guidance_scale
